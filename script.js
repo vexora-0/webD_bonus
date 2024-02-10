@@ -61,28 +61,6 @@ async function singleMovie() {
 
 }
 
-async function addTofavorites(id) {
-    console.log("fav-item", id);
-
-    localStorage.setItem(Math.random().toString(36).slice(2, 7), id);// math.random for the unique key and value pair
-    alert('Movie Added to Watchlist!');
-}
-
-//Removing the movie from the favorites list  and also from the localstorage
-async function removeFromfavorites(id) {
-    console.log(id);
-    for (i in localStorage) {
-        // If the ID passed as argument matches with value associated with key, then removing it 
-        if (localStorage[i] == id) {
-            localStorage.removeItem(i)
-            break;
-        }
-    }
-    //Alerting the user and refreshing the page
-    alert('Movie Removed from Watchlist');
-    window.location.replace('favorite.html');
-}
-
 //Displaying the movie list on the search page according to the user list
 async function displayMovieList(movies) {
     var output = '';
@@ -137,53 +115,6 @@ async function findMovies() {
         displayMovieList(data.Search)
     }
 }
-
-//Favorites movies are loaded on to the fav page from localstorage
-async function favoritesMovieLoader() {
-
-    var output = ''
-    //Traversing over all the movies in the localstorage
-    for (i in localStorage) {
-        var id = localStorage.getItem(i);
-        if (id != null) {
-            //Fetching the movie through id 
-            const url = `https://www.omdbapi.com/?i=${id}&plot=full&apikey=${key}`
-            const res = await fetch(`${url}`);
-            const data = await res.json();
-            console.log(data);
-
-
-            var img = ''
-            if (data.Poster) {
-                img = data.Poster
-            }
-            else { img = data.Title }
-            var Id = data.imdbID;
-            //Adding all the movie html in the output using interpolition
-            output += `
-
-        <div class="fav-item">
-            <div class="fav-poster">
-                <a href="movie.html?id=${id}"><img src=${img} alt="Favourites Poster"></a>
-            </div>
-            <div class="fav-details">
-                <div class="fav-details-box">
-                    <div>
-                        <p class="fav-movie-name">${data.Title}</p>
-                        <p class="fav-movie-rating">${data.Year} &middot; <span
-                                style="font-size: 15px; font-weight: 600;">${data.imdbRating}</span>/10</p>
-                    </div>
-                    <div style="color: maroon">
-                        <i class="fa-solid fa-trash" style="cursor:pointer;" onClick=removeFromfavorites('${Id}')></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-       `;
-        }
-
-    }
     //Appending the html to the movie-display class in favorites page 
     document.querySelector('.fav-container').innerHTML = output;
 }
