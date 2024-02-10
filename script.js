@@ -6,10 +6,6 @@ const key = '48aa722f';
 var searchInput = document.getElementById('Input');
 var displaySearchList = document.getElementsByClassName('fav-container');
 
-fetch('http://www.omdbapi.com/?i=tt3896198&apikey=48aa722f')
-    .then(res => res.json())
-    .then(data => console.log(data));
-
 // Upon keypress - function findMovies is initiated
 searchInput.addEventListener('input', findMovies);
 
