@@ -6,6 +6,10 @@ const key = '48aa722f';
 var searchInput = document.getElementById('Input');
 var displaySearchList = document.getElementsByClassName('fav-container');
 
+fetch('http://www.omdbapi.com/?i=tt3896198&apikey=48aa722f')
+    .then(res => res.json())
+    .then(data => console.log(data));
+
 // Upon keypress - function findMovies is initiated
 searchInput.addEventListener('input', findMovies);
 
@@ -60,7 +64,6 @@ async function singleMovie() {
     document.querySelector('.movie-container').innerHTML = output
 
 }
-
 //Displaying the movie list on the search page according to the user list
 async function displayMovieList(movies) {
     var output = '';
@@ -115,6 +118,4 @@ async function findMovies() {
         displayMovieList(data.Search)
     }
 }
-    //Appending the html to the movie-display class in favorites page 
-    document.querySelector('.fav-container').innerHTML = output;
-}
+
