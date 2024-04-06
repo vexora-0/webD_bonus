@@ -1,0 +1,156 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  width: 20rem;
+}
+
+.popHeader{
+  border-bottom: black;
+  border-bottom-style: solid;
+  border-bottom-width: .05em;
+}
+
+#headTitle{
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-top: .5em;
+  padding-left: .5em;
+}
+
+.inline-icon {
+  display:inline-flex ;
+  padding-right: .5em;
+  vertical-align: middle ;
+}
+
+#headChan{
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+#headAlert{
+  padding-top: .25em;
+  padding-bottom: 1em;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: repeat(auto-fit, minmax(2rem, 1fr));
+  padding: 1rem;
+}
+
+.result {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) -1px 4px 8px 4px, rgba(0, 0, 0, 0.06) -1px 4px 8px 4px;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+  word-wrap: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  flex-grow: 1;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color:black
+}
+
+.dataBody {
+  text-align: center;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color:black
+}
+
+.metricTitle {
+  width: 50%;
+  float: left;
+}
+
+.metricValue {
+  float: center;
+  padding-left: 1%;
+  font-weight: 600;
+}
+
+.loading {
+  opacity: .7;
+  animation: result-loading 1s linear infinite alternate;
+}
+
+.loading-text {
+  width: 100%;
+  height: 0.5rem;
+  margin-bottom: 0.25rem;
+  border-radius: 0.125rem;
+}
+
+.loading-title-text {
+  width: 50%;
+  height: 0.5rem;
+  border-radius: 0.125rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loading-title-text:last-child {
+  width: 50%;
+  height: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.125rem;
+  align-self: center;
+}
+
+@keyframes result-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.tooltip {
+  position: relative;
+  
+}
+
+.tooltip .tooltiptext {
+  --scale: 0;
+  visibility: hidden;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  text-align: justify;
+  padding: .5rem;
+  border-radius: .25rem;
+  transform: translateX(0) scale(var(--scale));
+  transform-origin: top center;
+  transition: 250ms transform;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  --scale: 1;
+}
+
+.tooltip .tooltiptext::after {  
+    content: '';
+    text-align: justify;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 7.5px;
+    border-style: solid;
+    border-color: transparent transparent #333 transparent;
+}
